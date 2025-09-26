@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            margin: 50px auto;
+            width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        img {
+            margin-top: 20px;
+            border-radius: 10px;
+            max-width: 100%;
+        }
+        a, button {
+            display: inline-block;
+            margin-top: 20px;
+            background: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        a:hover, button:hover {
+            background: #2980b9;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 10px;
+            background: #2c3e50;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Encryption Result
+    </header>
+
+    <div class="container">
+        {% if mode == "encrypt" %}
+            <h2>Encryption Successful ✅</h2>
+            <p>Your image with hidden text:</p>
+            <img src="{{ url_for('static', filename=output_image) }}">
+            <br>
+            <a href="{{ url_for('static', filename=output_image) }}" download>Download Image</a>
+        {% elif mode == "decrypt" %}
+            <h2>Decryption Successful ✅</h2>
+            <p>Hidden message is:</p>
+            <b>{{ hidden_text }}</b>
+        {% endif %}
+        <br><br>
+        <a href="/">Go Back</a>
+    </div>
+
+    <footer>
+        Made with ❤️ during Internship | Kishore S
+    </footer>
+</body>
+</html>
